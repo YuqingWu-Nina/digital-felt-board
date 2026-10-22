@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A playful, movable digital felt board for photos, notes, files, and contacts."
+    />
+    <title>My Digital Felt Board</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="app-header">
+        <a class="brand" href="#board" aria-label="My Digital Felt Board home">
+          <span class="brand-dot"></span>
+          <span>My Digital Felt Board</span>
+        </a>
+
+        <div class="header-actions">
+          <div class="theme-picker" aria-label="Choose felt board color">
+            <span class="theme-label">Theme</span>
+            <button class="theme-swatch active" data-theme="gray" aria-label="Light gray felt" title="Light gray felt"></button>
+            <button class="theme-swatch" data-theme="lavender" aria-label="Lavender felt" title="Lavender felt"></button>
+            <button class="theme-swatch" data-theme="green" aria-label="Forest green felt" title="Forest green felt"></button>
+            <button class="theme-swatch" data-theme="sand" aria-label="Warm sand felt" title="Warm sand felt"></button>
+          </div>
+          <button class="help-button" id="help-button" aria-expanded="false">How it works</button>
+        </div>
+      </header>
+
+      <section class="toolbar-region" aria-label="Board tools">
+        <div class="creation-toolbar" role="toolbar" aria-label="Add something to your board">
+          <button class="tool-button" data-tool="photo" aria-label="Add photo" title="Add photo"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="8" cy="9" r="1.5"></circle><path d="m4.5 17 5-5 3.2 3.2 2.4-2.4 4.4 4.2"></path></svg>Photo</button>
+          <button class="tool-button" data-tool="file" aria-label="Add linked document" title="Add linked document"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5h8l4 4V20.5H6z"></path><path d="M14 3.5v4h4M9 12h6M9 15.5h6"></path></svg>File</button>
+          <button class="tool-button" data-tool="contact" aria-label="Add contact card" title="Add contact card"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><circle cx="8.5" cy="11" r="2"></circle><path d="M5.7 16c.7-1.8 1.7-2.7 2.8-2.7s2.1.9 2.8 2.7M14 10h4M14 13h4M14 16h3"></path></svg>Contact card</button>
+          <button class="tool-button primary-tool" data-tool="sticky" aria-label="Add sticky note" title="Add sticky note"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v12l-4 4H5z"></path><path d="M15 20v-4h4M12 8v5M9.5 10.5h5"></path></svg>Sticky note</button>
+        </div>
+        <div class="creation-panel" id="creation-panel" aria-live="polite"></div>
+      </section>
+
+      <section class="filter-row" aria-label="Filter board units">
+        <button class="filter active" data-filter="all">All <span>7</span></button>
+        <button class="filter" data-filter="photo">Photos <span>3</span></button>
+        <button class="filter" data-filter="note">Sticky notes <span>2</span></button>
+        <button class="filter" data-filter="file">Files <span>1</span></button>
+        <button class="filter" data-filter="contact">Contacts <span>1</span></button>
+      </section>
+
+      <section class="board-wrap" id="board">
+        <div class="board-caption">
+          <div>
+            <p class="eyebrow">PRIVATE SPACE</p>
+            <p class="caption-title">Things I want close by</p>
+          </div>
+          <p class="caption-hint">Select an item to edit it · drag empty edges to move</p>
+        </div>
+
+        <div class="felt-board" id="felt-board" data-theme="gray" aria-label="Interactive felt board">
+          <article class="board-unit photo-unit" data-type="photo" data-attachment="clear" style="--x: 6%; --y: 9%; --w: 205px; --rotation: -5deg;">
+            <div class="attachment clear-pin" aria-hidden="true"></div>
+            <div class="polaroid-frame">
+              <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=700&q=80" alt="A group of friends outdoors" />
+              <p>somewhere together</p>
+            </div>
+            <button class="rotate-handle" aria-label="Rotate photo"></button>
+            <button class="resize-handle" aria-label="Resize photo"></button>
+          </article>
+
+          <article class="board-unit note-unit checklist" data-type="note" data-attachment="clear" style="--x: 29%; --y: 11%; --w: 224px; --rotation: 3deg;" data-note-color="peach" data-note-font="handwritten" data-note-size="medium">
+            <div class="attachment clear-pin" aria-hidden="true"></div>
+            <div class="note-content" contenteditable="true" spellcheck="true" aria-label="Editable checklist note">
+              <p class="note-kicker">WEEKEND</p>
+              <div class="check-row"><input type="checkbox" aria-label="Complete Call Mom" /><span>Call Mom</span></div>
+              <div class="check-row"><input type="checkbox" aria-label="Complete Pick up flowers" /><span>Pick up flowers</span></div>
+              <div class="check-row"><input type="checkbox" aria-label="Complete Print travel form" /><span>Print travel form</span></div>
+            </div>
+            <button class="rotate-handle" aria-label="Rotate note"></button>
+            <button class="resize-handle" aria-label="Resize note"></button>
+          </article>
+
+          <article class="board-unit file-unit" data-type="file" data-attachment="metal" style="--x: 54%; --y: 7%; --w: 292px; --rotation: -1deg;">
+            <div class="attachment metal-pin" aria-hidden="true"></div>
+            <div class="file-topline"><span>PDF · SAVED</span><span class="file-more">•••</span></div>
+            <div class="file-preview">
+              <div class="file-preview-head">Travel essentials</div>
+              <div class="preview-rule long"></div>
+              <div class="preview-rule"></div>
+              <div class="preview-rule short"></div>
+              <div class="preview-stamp">KEEP</div>
+            </div>
+            <div class="file-footer">
+              <div><strong>Important documents</strong><span>Checklist · 1 page</span></div>
+              <span class="file-icon">↗</span>
+            </div>
+            <button class="rotate-handle" aria-label="Rotate file"></button>
+            <button class="resize-handle" aria-label="Resize file"></button>
+          </article>
+
+          <article class="board-unit photo-unit small-photo" data-type="photo" data-attachment="washi" style="--x: 76%; --y: 40%; --w: 178px; --rotation: 6deg;">
+            <div class="attachment washi-tape" aria-hidden="true"></div>
+            <div class="polaroid-frame">
+              <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=700&q=80" alt="Mountain landscape at sunset" />
+              <p>leave room for wonder</p>
+            </div>
+            <button class="rotate-handle" aria-label="Rotate photo"></button>
+            <button class="resize-handle" aria-label="Resize photo"></button>
+          </article>
+
+          <article class="board-unit photo-unit pet-photo" data-type="photo" data-attachment="clear" style="--x: 8%; --y: 53%; --w: 170px; --rotation: 4deg;">
+            <div class="attachment clear-pin" aria-hidden="true"></div>
+            <div class="polaroid-frame">
+              <img src="https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=crop&w=700&q=80" alt="A small dog looking at the camera" />
+              <p>tiny sunshine</p>
+            </div>
+            <button class="rotate-handle" aria-label="Rotate photo"></button>
+            <button class="resize-handle" aria-label="Resize photo"></button>
+          </article>
+
+          <article class="board-unit note-unit bullet-note" data-type="note" data-attachment="washi" style="--x: 32%; --y: 60%; --w: 198px; --rotation: -4deg;" data-note-color="butter" data-note-font="rounded" data-note-size="medium">
+            <div class="attachment washi-tape" aria-hidden="true"></div>
+            <div class="note-content" contenteditable="true" spellcheck="true" aria-label="Editable bullet note">
+              <p class="note-kicker">A LITTLE NOTE</p>
+              <ul>
+                <li>Bring your camera</li>
+                <li>Save a seat by the window</li>
+              </ul>
+              <p class="signed-note">— for later</p>
+            </div>
+            <button class="rotate-handle" aria-label="Rotate note"></button>
+            <button class="resize-handle" aria-label="Resize note"></button>
+          </article>
+
+          <article class="board-unit contact-unit" data-type="contact" data-attachment="metal" style="--x: 60%; --y: 64%; --w: 258px; --rotation: 2deg;">
+            <div class="attachment metal-pin" aria-hidden="true"></div>
+            <div class="contact-stripe"></div>
+            <div class="contact-content">
+              <div class="avatar">A</div>
+              <div>
+                <p class="contact-label">FAVORITE PEOPLE</p>
+                <h2>Alex Chen</h2>
+                <p class="contact-relation">Friend · New York</p>
+              </div>
+              <div class="contact-details">
+                <span>☎ (555) 013-1010</span>
+                <span>✉ alex@example.com</span>
+              </div>
+            </div>
+            <button class="rotate-handle" aria-label="Rotate contact card"></button>
+            <button class="resize-handle" aria-label="Resize contact card"></button>
+          </article>
+        </div>
+      </section>
+
+      <section class="context-toolbar" id="context-toolbar" aria-live="polite" aria-label="Selected item controls">
+        <p class="context-empty">Select a board item to edit its style.</p>
+      </section>
+
+      <dialog class="help-dialog" id="help-dialog">
+        <button class="close-dialog" aria-label="Close help">×</button>
+        <p class="eyebrow">A SMALL CANVAS</p>
+        <h2>Keep everyday things close.</h2>
+        <p>Use the toolbar to add a new item. Select a card to change its style, drag it around, use the top handle to rotate it, or pull the lower corner to resize it.</p>
+      </dialog>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
